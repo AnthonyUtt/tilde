@@ -13,6 +13,7 @@ in
     sessionVariables = { XDG_CURRENT_DESKTOP = "Hyprland"; };
     packages = with pkgs; [
       inputs.hyprwm-contrib.packages.${system}.grimblast
+      inputs.rose-pine-hyprcursor.packages.${system}.default
       xdg-desktop-portal-gtk
       egl-wayland
     ];
@@ -22,11 +23,12 @@ in
     enable = true;
     package = inputs.hyprland.packages.${system}.hyprland;
     plugins = with inputs.hyprland-plugins.packages.${system}; [ ];
+    xwayland.enable = false;
+    systemd.enable = false;
   };
 
   xdg.configFile.hypr = {
     source = ./config;
     recursive = true;
-    force = true;
   };
 }

@@ -31,6 +31,13 @@
                 pulse.max.quantum = "2048/48000";
               };
             }
+            {
+              name = "libpipewire-module-combine-sink";
+              args = {
+                sink_name = "combined";
+                slaves = "alsa_output.pci-0000_09_00.1.hdmi-stereo,alsa_output.pci-0000_0b_00.3.analog-stereo";
+              };
+            }
           ];
           stream.properties = {
             node.latency = "2048/48000";

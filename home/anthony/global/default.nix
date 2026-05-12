@@ -7,6 +7,8 @@
     };
   };
 
+  nixpkgs.config.allowUnfree = true;
+
   programs = {
     home-manager.enable = true;
     git.enable = true;
@@ -15,7 +17,9 @@
   home = {
     username = lib.mkDefault "anthony";
     homeDirectory = lib.mkDefault "/home/${config.home.username}";
-    stateVersion = "25.11";
+    stateVersion = "26.05";
     sessionPath = [ "$HOME/.local/bin" ];
   };
+
+  xdg.enable = true;
 }

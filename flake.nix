@@ -19,6 +19,11 @@
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
+    rose-pine-hyprcursor = {
+      url = "github:ndom91/rose-pine-hyprcursor";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.hyprlang.follows = "hyprland/hyprlang";
+    };
     nix-gaming.url = "github:fufexan/nix-gaming";
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake/beta";

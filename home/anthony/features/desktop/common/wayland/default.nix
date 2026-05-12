@@ -2,6 +2,7 @@
   imports = [
     ./ghostty.nix
     ./mako.nix
+    ./wofi.nix
   ];
 
   home.packages = with pkgs; [

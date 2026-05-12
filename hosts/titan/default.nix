@@ -8,6 +8,7 @@
     ../common/users/anthony
 
     ../common/optional/docker.nix
+    ../common/optional/fonts.nix
     ../common/optional/gamemode.nix
     ../common/optional/greetd.nix
     ../common/optional/logitech.nix
@@ -58,5 +59,5 @@
     };
   };
 
-  system.stateVersion = "25.11";
+  system.stateVersion = "26.05";
 }

@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   home.packages = [ pkgs.libnotify ];
-  services.mako {
+  services.mako = {
     enable = true;
   };
 }

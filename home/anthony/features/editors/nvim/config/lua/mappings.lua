@@ -1,3 +1,7 @@
+require "nvchad.mappings"
+
+-- add yours here
+
 local map = vim.keymap.set
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
@@ -14,6 +18,8 @@ map('v', '>', '>gv', { noremap = true, silent = true })
 
 map("x", "<leader>ss", ":Silicon <CR>", { desc = "Screenshot selection (silicon)" })
 
+-- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
+
 local function load_mappings(mappings)
   for _, v in ipairs(mappings) do
     map(v[1], v[2], v[3], v[4])
@@ -23,8 +29,8 @@ end
 local nvimtree = require("configs.nvimtree").mappings
 load_mappings(nvimtree)
 
-local lsp = require("configs.lspconfig").mappings
-load_mappings(lsp)
+-- local lsp = require("configs.lspconfig").mappings
+-- load_mappings(lsp)
 
 local gitsigns = require("configs.gitsigns").mappings
 load_mappings(gitsigns)

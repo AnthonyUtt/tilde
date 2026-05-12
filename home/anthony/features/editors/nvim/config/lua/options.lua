@@ -1,3 +1,7 @@
+require "nvchad.options"
+
+-- add yours here!
+
 local o = vim.opt
 o.colorcolumn = "80"
 
@@ -40,3 +44,12 @@ o.updatetime = 250
 -- go to previous/next line with h,l,left arrow and right arrow
 -- when cursor reaches end/beginning of line
 o.whichwrap:append "<>[]hl"
+
+-- Update Avante highlight groups
+vim.cmd [[
+  hi! link AvanteSidebarWinSeparator NormalFloat
+  hi! link AvanteSidebarWinHorizontalSeparator NormalFloat
+]]
+
+-- Windsurf settings
+vim.g.codeium_disable_bindings = 1

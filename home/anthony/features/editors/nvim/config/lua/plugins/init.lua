@@ -16,6 +16,24 @@ return {
     event = "VeryLazy",
     opts = require("configs.flash").opts,
   },
+  -- {
+  --   'mrcjkb/rustaceanvim',
+  --   version = '^5', -- Recommended
+  --   lazy = false, -- This plugin is already lazy
+  --   config = function()
+  --     vim.g.rustaceanvim = {
+  --       server = {
+  --         default_settings = {
+  --           ["rust-analyzer"] = {
+  --             cargo = {
+  --               targetDir = "./.rust-analyzer"
+  --             }
+  --           }
+  --         }
+  --       }
+  --     }
+  --   end,
+  -- },
   {
     "hrsh7th/nvim-cmp",
     opts = function()
@@ -81,5 +99,51 @@ return {
         "yaml",
   		},
   	},
+  },
+  {
+    -- Disable NvChad defaults
+    {
+      "neovim/nvim-lspconfig",
+      enable = false,
+    },
+    {
+      "williamboman/mason.nvim",
+      enable = false,
+    },
+  },
+  {
+    -- Other
+    {
+      "Glench/Vim-Jinja2-Syntax",
+      init = function()
+        vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+          pattern = { "*.tera", "*.njk" },
+          command = "set ft=jinja",
+        })
+      end,
+    },
+    {
+      "tpope/vim-rails",
+      config = function()
+        -- disable autocmd set filetype=eruby.yaml
+        vim.api.nvim_create_autocmd({ "BufNewFile", "BufReadPost" }, {
+          pattern = { "*.yml" },
+          callback = function()
+            vim.bo.filetype = "yaml"
+          end,
+        })
+      end,
+    },
+    {
+      "EdenEast/nightfox.nvim",
+      config = function()
+        require('nightfox').setup({
+          transparent = true,
+          terminal_colors = false,
+          dim_inactive = false,
+        })
+        vim.cmd("colorscheme duskfox")
+      end,
+    },
   },
 }
