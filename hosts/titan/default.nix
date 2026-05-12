@@ -1,0 +1,57 @@
+{ pkgs, inputs, ... }: {
+  imports = [
+    inputs.home-manager.nixosModules.home-manager
+
+    ./hardware-configuration.nix
+
+    ../common/global
+    ../common/users/anthony
+
+    ../common/optional/greetd.nix
+  ];
+
+  networking = {
+    hostName = "titan";
+    useDHCP = false;
+    interfaces.enp7s0 = {
+      useDHCP = true;
+    };
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [ 22 ];
+    };
+  };
+
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = false;
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+  };
+
+  services = {
+    dbus.implementation = "dbus";
+    openssh = {
+      enable = true;
+      ports = [ 22 ];
+      settings = {
+        PasswordAuthentication = false;
+        PermitRootLogin = "no";
+      };
+    };
+  };
+
+  security.polkit.enable = true;
+
+  home-manager = {
+    extraSpecialArgs = {
+      inherit inputs;
+    };
+
+    users = {
+      anthony = import ../../home/anthony/titan.nix;
+    };
+  };
+
+  system.stateVersion = "25.11";
+}
