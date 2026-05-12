@@ -26,6 +26,7 @@
       ];
     };
 
+    kernelPackages = pkgs.linuxPackages_zen;
     kernelModules = [
       "nvidia"
       "nvidia_modeset"

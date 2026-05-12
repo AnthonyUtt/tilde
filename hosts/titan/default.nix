@@ -7,7 +7,12 @@
     ../common/global
     ../common/users/anthony
 
+    ../common/optional/docker.nix
+    ../common/optional/gamemode.nix
     ../common/optional/greetd.nix
+    ../common/optional/logitech.nix
+    ../common/optional/pipewire.nix
+    ../common/optional/wine.nix
   ];
 
   networking = {

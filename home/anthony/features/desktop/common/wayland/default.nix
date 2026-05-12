@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   imports = [
     ./ghostty.nix
+    ./mako.nix
   ];
 
   home.packages = with pkgs; [
