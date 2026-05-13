@@ -8,7 +8,7 @@
     ./features/desktop/browser/zen
     ./features/desktop/hyprland
 
-    ./features/editors/cursor.nix
+    ./features/editors/ai
     ./features/editors/nvim
   ];
 }

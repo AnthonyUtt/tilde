@@ -1,4 +1,4 @@
-{ lib, pkgs, config, ... }: {
+{ lib, pkgs, config, inputs, ... }: {
   nix = {
     package = lib.mkDefault pkgs.nix;
     settings = {
@@ -7,7 +7,12 @@
     };
   };
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+    config.allowUnfree = true;
+    overlays = [
+      inputs.claude-code.overlays.default
+    ];
+  };
 
   programs = {
     home-manager.enable = true;

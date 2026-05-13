@@ -1,7 +1,7 @@
 { ... }: {
   programs.ghostty = {
     enable = true;
-    enableZshIntegration = true;
+    enableZshIntegration = false;
     installVimSyntax = true;
     settings = {
       theme = "Bluloco Dark";
