@@ -7,6 +7,7 @@
 
   home.packages = with pkgs; [
     gimp
+    gnome-keyring
     inkscape
     obsidian
     playerctl

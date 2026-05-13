@@ -8,6 +8,7 @@ hl.bind(mod.."mouse:273", hl.dsp.window.resize(), { mouse = true, description = 
 -- Programs
 hl.bind(mod.."Space", hl.dsp.exec_cmd("wofi"))
 hl.bind(mod.."Return", hl.dsp.exec_cmd("ghostty"))
+hl.bind("Print", hl.dsp.exec_cmd("flameshot gui"))
 
 -- Exits
 hl.bind(modShift.."Q", hl.dsp.window.close())

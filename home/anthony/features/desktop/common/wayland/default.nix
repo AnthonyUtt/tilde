@@ -1,5 +1,6 @@
 { pkgs, ... }: {
   imports = [
+    ./flameshot.nix
     ./ghostty.nix
     ./mako.nix
     ./wofi.nix
