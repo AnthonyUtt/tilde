@@ -48,6 +48,7 @@
 
     overlays = {
       rust-overlay = rust-overlay.overlays.default;
+      personal = import pkgs/overlay.nix;
     };
 
     mkNixos = modules: nixpkgs.lib.nixosSystem {

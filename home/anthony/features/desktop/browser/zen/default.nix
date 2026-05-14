@@ -16,7 +16,7 @@
     profiles.default = rec {
       settings = {
         "zen.workspaces.continue-where-left-off" = true;
-        "zen.workspaces.natural-scroll" = true;
+        "zen.workspaces.natural-scroll" = false;
         "zen.view.compact.hide-tabbar" = true;
         "zen.view.compact.hide-toolbar" = true;
         "zen.view.compact.animate-sidebar" = false;
@@ -110,7 +110,7 @@
       spaces = {
         "Work" = {
           id = "04a4312a-1ce2-4ed4-8d7a-863ecfb00a87";
-          position = 1000;
+          position = 1002;
           icon = "🚀";
           theme = {
             type = "gradient";
@@ -200,7 +200,7 @@
         };
         "AntDev" = {
           id = "da9e01bd-cba1-472b-b863-7c1c81a00e15";
-          position = 1002;
+          position = 1000;
           icon = "👾";
           theme = {
             type = "gradient";

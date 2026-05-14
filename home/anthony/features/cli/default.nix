@@ -18,5 +18,8 @@
     yarn
     zoxide
     direnv
+
+    aviator-cli
+    github-cli
   ];
 }

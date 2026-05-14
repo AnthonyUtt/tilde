@@ -3,6 +3,7 @@ let
   overlays = {
     rust-overlay = inputs.rust-overlay.overlays.default;
     claude-code = inputs.claude-code.overlays.default;
+    personal = import ../../../pkgs/overlay.nix;
   };
 in
 {
