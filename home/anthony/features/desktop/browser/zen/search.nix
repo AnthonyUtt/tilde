@@ -40,7 +40,7 @@
         }
       ];
       icon = nixSnowflakeIcon;
-      definedAliases = [ "@pkgs" ];
+      definedAliases = [ "@np" ];
     };
     "Nix Options" = {
       urls = [
@@ -59,7 +59,7 @@
         }
       ];
       icon = nixSnowflakeIcon;
-      definedAliases = [ "@pkgs" ];
+      definedAliases = [ "@no" ];
     };
     "Home Manager Options" = {
       urls = [
@@ -78,7 +78,7 @@
         }
       ];
       icon = nixSnowflakeIcon;
-      definedAliases = ["hmop"];
+      definedAliases = [ "@hm" ];
     };
   };
 }

@@ -7,6 +7,7 @@
     ../common/global
     ../common/users/anthony
 
+    ../common/optional/1password.nix
     ../common/optional/docker.nix
     ../common/optional/fonts.nix
     ../common/optional/gamemode.nix

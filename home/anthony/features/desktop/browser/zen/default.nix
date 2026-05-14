@@ -111,32 +111,128 @@
         "Work" = {
           id = "04a4312a-1ce2-4ed4-8d7a-863ecfb00a87";
           position = 1000;
-          # icon = "some-icon.svg";
-          # TODO: set up theme gradients
+          icon = "🚀";
+          theme = {
+            type = "gradient";
+            colors = [
+              {
+                red = 98;
+                green = 6;
+                blue = 213;
+                algorithm = "analogous";
+                lightness = 43;
+                primary = true;
+                custom = false;
+                position.x = 175;
+                position.y = 97;
+              }
+              {
+                red = 208;
+                green = 6;
+                blue = 153;
+                algorithm = "analogous";
+                lightness = 43;
+                primary = false;
+                custom = false;
+                position.x = 240;
+                position.y = 123;
+              }
+              {
+                red = 6;
+                green = 84;
+                blue = 213;
+                algorithm = "analogous";
+                lightness = 43;
+                primary = false;
+                custom = false;
+                position.x = 114;
+                position.y = 129;
+              }
+            ];
+            opacity = 0.5;
+            texture = 0.6875;
+          };
         };
         "Personal" = {
           id = "7c63557e-0149-4b75-9027-776b45c6b5de";
           position = 1001;
-          # icon = "some-icon.svg";
-          # TODO: set up theme gradients
+          icon = "🏠";
+          theme = {
+            type = "gradient";
+            colors = [
+              {
+                red = 218;
+                green = 251;
+                blue = 65;
+                algorithm = "analogous";
+                lightness = 62;
+                primary = true;
+                custom = false;
+                position.x = 220;
+                position.y = 294;
+              }
+              {
+                red = 70;
+                green = 251;
+                blue = 73;
+                algorithm = "analogous";
+                lightness = 62;
+                primary = false;
+                custom = false;
+                position.x = 118;
+                position.y = 284;
+              }
+              {
+                red = 251;
+                green = 127;
+                blue = 65;
+                algorithm = "analogous";
+                lightness = 62;
+                primary = false;
+                custom = false;
+                position.x = 293;
+                position.y = 221;
+              }
+            ];
+            opacity = 0.5;
+            texture = 0.6875;
+          };
         };
         "AntDev" = {
           id = "da9e01bd-cba1-472b-b863-7c1c81a00e15";
           position = 1002;
-          # icon = "some-icon.svg";
-          # TODO: set up theme gradients
+          icon = "👾";
+          theme = {
+            type = "gradient";
+            colors = [
+              {
+                red = 250;
+                green = 26;
+                blue = 70;
+                algorithm = "analogous";
+                lightness = 54;
+                primary = true;
+                custom = false;
+                position.x = 282;
+                position.y = 159;
+              }
+              {
+                red = 243;
+                green = 26;
+                blue = 250;
+                algorithm = "analogous";
+                lightness = 54;
+                primary = false;
+                custom = false;
+                position.x = 230;
+                position.y = 87;
+              }
+            ];
+            opacity = 0.6;
+            texture = 0.6875;
+          };
         };
       };
     };
   };
-
-  # TODO: Move this to nix config, not HM config
-  # environment.etc = {
-  #   "1password/custom_allowed_browsers" = {
-  #     text = ''
-  #       .zen-wrapped
-  #     '';
-  #     mode = "0755";
-  #   };
-  # };
 }
