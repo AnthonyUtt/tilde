@@ -1,4 +1,9 @@
 return {
+  -- Override lockfile location to be outside the config dir,
+  -- since that directory will be linked from inside the nix
+  -- store (which is a read-only filesystem)
+  lockfile = vim.fn.stdpath("data") .. "/lazy/lazy-lock.json",
+
   defaults = { lazy = true },
   install = { colorscheme = { "nvchad" } },
 

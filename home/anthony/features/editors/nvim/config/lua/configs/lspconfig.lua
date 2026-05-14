@@ -16,6 +16,7 @@ M.config = function()
     "glsl_analyzer",
     "html",
     "jsonls",
+    "nil_ls",
     "solargraph",
     "sqlls",
   }

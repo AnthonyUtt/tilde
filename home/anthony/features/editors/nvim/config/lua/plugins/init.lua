@@ -16,24 +16,30 @@ return {
     event = "VeryLazy",
     opts = require("configs.flash").opts,
   },
-  -- {
-  --   'mrcjkb/rustaceanvim',
-  --   version = '^5', -- Recommended
-  --   lazy = false, -- This plugin is already lazy
-  --   config = function()
-  --     vim.g.rustaceanvim = {
-  --       server = {
-  --         default_settings = {
-  --           ["rust-analyzer"] = {
-  --             cargo = {
-  --               targetDir = "./.rust-analyzer"
-  --             }
-  --           }
-  --         }
-  --       }
-  --     }
-  --   end,
-  -- },
+  {
+    'mrcjkb/rustaceanvim',
+    version = '^5', -- Recommended
+    lazy = false, -- This plugin is already lazy
+    config = function()
+      vim.g.rustaceanvim = {
+        server = {
+          default_settings = {
+            ["rust-analyzer"] = {
+              cargo = {
+                targetDir = "./.rust-analyzer"
+              }
+            }
+          }
+        }
+      }
+    end,
+  },
+  {
+    "neovim/nvim-lspconfig",
+    config = function()
+      require("configs.lspconfig").config()
+    end,
+  },
   {
     "hrsh7th/nvim-cmp",
     opts = function()
@@ -102,10 +108,6 @@ return {
   },
   {
     -- Disable NvChad defaults
-    {
-      "neovim/nvim-lspconfig",
-      enable = false,
-    },
     {
       "williamboman/mason.nvim",
       enable = false,

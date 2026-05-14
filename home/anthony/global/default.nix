@@ -1,4 +1,11 @@
-{ lib, pkgs, config, inputs, ... }: {
+{ lib, pkgs, config, inputs, ... }:
+let
+  overlays = {
+    rust-overlay = inputs.rust-overlay.overlays.default;
+    claude-code = inputs.claude-code.overlays.default;
+  };
+in
+{
   nix = {
     package = lib.mkDefault pkgs.nix;
     settings = {
@@ -9,9 +16,7 @@
 
   nixpkgs = {
     config.allowUnfree = true;
-    overlays = [
-      inputs.claude-code.overlays.default
-    ];
+    overlays = builtins.attrValues overlays;
   };
 
   programs = {

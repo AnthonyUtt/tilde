@@ -29,8 +29,8 @@ end
 local nvimtree = require("configs.nvimtree").mappings
 load_mappings(nvimtree)
 
--- local lsp = require("configs.lspconfig").mappings
--- load_mappings(lsp)
+local lsp = require("configs.lspconfig").mappings
+load_mappings(lsp)
 
 local gitsigns = require("configs.gitsigns").mappings
 load_mappings(gitsigns)

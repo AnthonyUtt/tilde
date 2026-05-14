@@ -25,6 +25,10 @@
       inputs.hyprlang.follows = "hyprland/hyprlang";
     };
     nix-gaming.url = "github:fufexan/nix-gaming";
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake/beta";
       inputs = {
@@ -36,17 +40,15 @@
     claude-code.url = "github:sadjow/claude-code-nix";
   };
 
-  outputs = { self, nixpkgs, ... }@inputs:
+  outputs = { self, nixpkgs, rust-overlay, ... }@inputs:
   let
     inherit (self) outputs;
 
-    forEachSystem = nixpkgs.lib.genAttrs [ "x86_64-linux" ];
-    forEachPkgs = f: forEachSystem (sys: f nixpkgs.legacyPackages.${sys});
-
     system = "x86_64-linux";
-    pkgs = import nixpkgs { inherit system; };
 
-    overlays = {};
+    overlays = {
+      rust-overlay = rust-overlay.overlays.default;
+    };
 
     mkNixos = modules: nixpkgs.lib.nixosSystem {
       inherit system;
@@ -60,7 +62,7 @@
       specialArgs = { inherit inputs outputs; };
     };
   in
-  rec {
+  {
     nixosModules = import ./modules/nixos;
 
     # packages = forEachPkgs (pkgs: (import ./pkgs { inherit pkgs; }));
