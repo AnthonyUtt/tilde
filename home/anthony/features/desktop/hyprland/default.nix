@@ -1,4 +1,4 @@
-{ inputs, pkgs, config, ... }:
+{ inputs, pkgs, lib, config, ... }:
 let
   system = pkgs.stdenv.hostPlatform.system;
 in
@@ -30,5 +30,13 @@ in
   xdg.configFile.hypr = {
     source = ./config;
     recursive = true;
+  };
+
+  # Matugen writes hypr colors to a writable state file; symlink the nix-managed
+  # path at it so dynamic theming reaches Hyprland without making the rest of
+  # the hypr config mutable.
+  xdg.configFile."hypr/hyprland/colors.lua" = lib.mkForce {
+    source = config.lib.file.mkOutOfStoreSymlink
+      "${config.xdg.stateHome}/quickshell/user/generated/hypr-colors.lua";
   };
 }

@@ -46,7 +46,12 @@
         PermitRootLogin = "no";
       };
     };
+    gnome.gnome-keyring.enable = true;
+    power-profiles-daemon.enable = true;
+    upower.enable = true;
   };
+
+  programs.dconf.enable = true;
 
   security.polkit.enable = true;
 

@@ -6,9 +6,7 @@ hl.bind(mod.."mouse:272", hl.dsp.window.drag(), { mouse = true, description = "M
 hl.bind(mod.."mouse:273", hl.dsp.window.resize(), { mouse = true, description = "Resize" })
 
 -- Programs
-hl.bind(mod.."Space", hl.dsp.exec_cmd("wofi"))
 hl.bind(mod.."Return", hl.dsp.exec_cmd("ghostty"))
-hl.bind("Print", hl.dsp.exec_cmd("flameshot gui"))
 
 -- Exits
 hl.bind(modShift.."Q", hl.dsp.window.close())
@@ -35,6 +33,36 @@ hl.bind(modShift.."L", hl.dsp.window.move({ direction = "right" }))
 
 -- Floating
 hl.bind(modShift.."Space", hl.dsp.window.float({ action = "toggle" }))
+
+-- Quickshell panels
+hl.bind(mod.."Space",          hl.dsp.global("quickshell:overviewWorkspacesToggle"), { description = "Overview / launcher" })
+hl.bind(mod.."A",              hl.dsp.global("quickshell:sidebarLeftToggle"),         { description = "AI sidebar" })
+hl.bind(mod.."ALT + A",        hl.dsp.global("quickshell:sidebarLeftToggleDetach"),   { description = "Detach AI sidebar" })
+hl.bind(mod.."N",              hl.dsp.global("quickshell:sidebarRightToggle"),        { description = "Control center" })
+hl.bind(mod.."Tab",            hl.dsp.global("quickshell:overviewWorkspacesToggle"),  { description = "Overview" })
+hl.bind(mod.."V",              hl.dsp.global("quickshell:overviewClipboardToggle"),   { description = "Clipboard history" })
+hl.bind(mod.."Period",         hl.dsp.global("quickshell:overviewEmojiToggle"),       { description = "Emoji picker" })
+hl.bind(mod.."Slash",          hl.dsp.global("quickshell:cheatsheetToggle"),          { description = "Cheatsheet" })
+hl.bind(mod.."M",              hl.dsp.global("quickshell:mediaControlsToggle"),       { description = "Media controls" })
+hl.bind(mod.."G",              hl.dsp.global("quickshell:overlayToggle"),             { description = "Widget overlay" })
+hl.bind("CTRL + ALT + Delete", hl.dsp.global("quickshell:sessionToggle"),             { description = "Session menu" })
+
+-- Wallpaper
+hl.bind("CTRL + SUPER + T",       hl.dsp.global("quickshell:wallpaperSelectorToggle"), { description = "Wallpaper picker" })
+hl.bind("CTRL + SUPER + ALT + T", hl.dsp.global("quickshell:wallpaperSelectorRandom"), { description = "Random wallpaper" })
+
+-- Screenshot / record (replaces flameshot)
+hl.bind("Print",         hl.dsp.global("quickshell:regionScreenshot"), { description = "Region screenshot" })
+hl.bind(modShift.."S",   hl.dsp.global("quickshell:regionScreenshot"))
+hl.bind(modShift.."R",   hl.dsp.global("quickshell:regionRecord"),     { locked = true, description = "Region record" })
+hl.bind(modShift.."A",   hl.dsp.global("quickshell:regionSearch"),     { description = "Region image search" })
+hl.bind(modShift.."X",   hl.dsp.global("quickshell:regionOcr"),        { description = "OCR region" })
+
+-- Welcome wizard (rebindable)
+hl.bind("SUPER + SHIFT + ALT + Slash", hl.dsp.exec_cmd("qs -p $HOME/.config/quickshell/welcome.qml"))
+
+-- Restart shell
+hl.bind("CTRL + SUPER + R", hl.dsp.exec_cmd("killall quickshell; quickshell &"), { description = "Restart shell" })
 
 -- Laptop multimedia keys for volume and LCD brightness
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })

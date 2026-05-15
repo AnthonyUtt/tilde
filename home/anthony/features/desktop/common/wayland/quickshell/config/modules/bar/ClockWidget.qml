@@ -1,52 +1,49 @@
+import qs.modules.common
+import qs.modules.common.widgets
+import qs.services
 import QtQuick
-import "../common"
-import "../../services"
+import QtQuick.Layouts
 
-Column {
+Item {
     id: root
+    property bool borderless: Config.options.bar.borderless
+    property bool showDate: Config.options.bar.verbose
+    implicitWidth: rowLayout.implicitWidth
+    implicitHeight: Appearance.sizes.barHeight
 
-    spacing: Appearance.sizes.clockSpacing
+    RowLayout {
+        id: rowLayout
+        anchors.centerIn: parent
+        spacing: 4
 
-    Text {
-        anchors.horizontalCenter: parent.horizontalCenter
-        text: Time.hourStr
-        color: Appearance.colors.foreground
-        font.pixelSize: Appearance.sizes.clockFontSizeLarge
-        font.family: Appearance.fonts.monoFamily
-        horizontalAlignment: Text.AlignHCenter
+        StyledText {
+            font.pixelSize: Appearance.font.pixelSize.large
+            color: Appearance.colors.colOnLayer1
+            text: DateTime.time
+        }
+
+        StyledText {
+            visible: root.showDate
+            font.pixelSize: Appearance.font.pixelSize.small
+            color: Appearance.colors.colOnLayer1
+            text: "•"
+        }
+
+        StyledText {
+            visible: root.showDate
+            font.pixelSize: Appearance.font.pixelSize.small
+            color: Appearance.colors.colOnLayer1
+            text: DateTime.longDate
+        }
     }
 
-    Text {
-        anchors.horizontalCenter: parent.horizontalCenter
-        text: Time.minuteStr
-        color: Appearance.colors.foreground
-        font.pixelSize: Appearance.sizes.clockFontSizeLarge
-        font.family: Appearance.fonts.monoFamily
-        horizontalAlignment: Text.AlignHCenter
-    }
+    MouseArea {
+        id: mouseArea
+        anchors.fill: parent
+        hoverEnabled: !Config.options.bar.tooltips.clickToShow
 
-    Rectangle {
-        anchors.horizontalCenter: parent.horizontalCenter
-        width: Appearance.sizes.clockDividerWidth
-        height: Appearance.sizes.clockDividerHeight
-        color: Appearance.colors.divider
-    }
-
-    Text {
-        anchors.horizontalCenter: parent.horizontalCenter
-        text: Time.monthShortStr
-        color: Appearance.colors.foreground
-        font.pixelSize: Appearance.sizes.clockFontSizeSmall
-        font.family: Appearance.fonts.monoFamily
-        horizontalAlignment: Text.AlignHCenter
-    }
-
-    Text {
-        anchors.horizontalCenter: parent.horizontalCenter
-        text: Time.dayOfMonthStr
-        color: Appearance.colors.foreground
-        font.pixelSize: Appearance.sizes.clockFontSizeSmall
-        font.family: Appearance.fonts.monoFamily
-        horizontalAlignment: Text.AlignHCenter
+        ClockWidgetPopup {
+            hoverTarget: mouseArea
+        }
     }
 }
