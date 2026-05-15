@@ -9,7 +9,5 @@
     font-awesome
     geist-font
     material-symbols
-    readex-pro
-    space-grotesk
   ] ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
 }

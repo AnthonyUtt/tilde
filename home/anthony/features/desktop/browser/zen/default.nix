@@ -71,6 +71,7 @@
           position = 101;
           isEssential = true;
           workspace = spaces."Work".id;
+          container = containers.Work.id;
         };
         "Calendar" = {
           id = "cba528eb-d95d-49f7-bff8-a6bb721e2ffd";
@@ -78,6 +79,7 @@
           position = 102;
           isEssential = true;
           workspace = spaces."Work".id;
+          container = containers.Work.id;
         };
         "Linear" = {
           id = "5ae6cfdd-fba9-44eb-9c01-e3e4e52d43c3";
@@ -85,6 +87,7 @@
           position = 103;
           isEssential = true;
           workspace = spaces."Work".id;
+          container = containers.Work.id;
         };
         "Github" = {
           id = "9049d73b-22a2-4e3e-bff4-8d78de8a77bc";
@@ -92,6 +95,7 @@
           position = 104;
           isEssential = true;
           workspace = spaces."Work".id;
+          container = containers.Work.id;
         };
       };
 
@@ -111,6 +115,7 @@
         "Work" = {
           id = "04a4312a-1ce2-4ed4-8d7a-863ecfb00a87";
           position = 1002;
+          container = containers.Work.id;
           icon = "🚀";
           theme = {
             type = "gradient";
@@ -156,6 +161,7 @@
         "Personal" = {
           id = "7c63557e-0149-4b75-9027-776b45c6b5de";
           position = 1001;
+          container = containers.Personal.id;
           icon = "🏠";
           theme = {
             type = "gradient";
@@ -201,6 +207,7 @@
         "AntDev" = {
           id = "da9e01bd-cba1-472b-b863-7c1c81a00e15";
           position = 1000;
+          container = containers.AntDev.id;
           icon = "👾";
           theme = {
             type = "gradient";

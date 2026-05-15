@@ -1,7 +1,32 @@
 { pkgs, inputs, lib, config, ... }:
 let
   system = pkgs.stdenv.hostPlatform.system;
-  qsPkg = inputs.quickshell.packages.${system}.default;
+  qsBase = inputs.quickshell.packages.${system}.default;
+
+  # quickshell's wrapper bakes in NIXPKGS_QT6_QML_IMPORT_PATH for a fixed set
+  # of Qt6 modules (qtbase, qtdeclarative, qtwayland). Extend it with the extra
+  # modules this config imports.
+  extraQmlModules = (with pkgs.qt6Packages; [
+    qt5compat        # Qt5Compat.GraphicalEffects
+    qtpositioning    # QtPositioning
+    qtmultimedia     # QtMultimedia
+  ]) ++ (with pkgs.kdePackages; [
+    syntax-highlighting  # org.kde.syntaxhighlighting
+  ]);
+
+  qsPkg = pkgs.symlinkJoin {
+    name = "quickshell-with-extra-qml";
+    paths = [ qsBase ];
+    nativeBuildInputs = [ pkgs.makeWrapper ];
+    postBuild = ''
+      wrapProgram $out/bin/quickshell \
+        --prefix NIXPKGS_QT6_QML_IMPORT_PATH : ${
+          lib.concatMapStringsSep ":"
+            (p: "${p}/lib/qt-6/qml")
+            extraQmlModules
+        }
+    '';
+  };
 
   pythonEnv = pkgs.python3.withPackages (ps: with ps; [
     opencv4
