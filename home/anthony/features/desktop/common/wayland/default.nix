@@ -3,6 +3,7 @@
     ./flameshot.nix
     ./ghostty.nix
     ./mako.nix
+    ./quickshell
     ./wofi.nix
   ];
 

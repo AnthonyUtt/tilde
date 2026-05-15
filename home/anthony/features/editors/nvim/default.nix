@@ -24,6 +24,7 @@ in
       dot-language-server
       emmet-ls
       eslint
+      kdePackages.qtdeclarative # for qml_ls
       lua-language-server
       nil
       prettier

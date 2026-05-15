@@ -17,6 +17,7 @@ M.config = function()
     "html",
     "jsonls",
     "nil_ls",
+    "qmlls",
     "solargraph",
     "sqlls",
   }

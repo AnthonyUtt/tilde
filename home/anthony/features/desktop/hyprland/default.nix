@@ -23,7 +23,7 @@ in
     enable = true;
     package = inputs.hyprland.packages.${system}.hyprland;
     plugins = with inputs.hyprland-plugins.packages.${system}; [ ];
-    xwayland.enable = false;
+    xwayland.enable = true;
     systemd.enable = false;
   };
 
