@@ -124,6 +124,34 @@ Singleton {
                         "required": ["command"]
                     }
                 },
+                {
+                    "name": "web_search",
+                    "description": "Search the web via SearxNG. Returns a ranked list of {title, url, snippet}. Use for recent events, factual lookups, or to find URLs to fetch in full.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "query": {
+                                "type": "string",
+                                "description": "Search query in natural language",
+                            },
+                        },
+                        "required": ["query"]
+                    }
+                },
+                {
+                    "name": "web_fetch",
+                    "description": "Fetch a URL and return its main content as markdown. Use this AFTER web_search to read a specific page in detail.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "url": {
+                                "type": "string",
+                                "description": "The full URL (including https://) to fetch",
+                            },
+                        },
+                        "required": ["url"]
+                    }
+                },
             ]}],
             "search": [{
                 "google_search": {}
@@ -178,6 +206,40 @@ Singleton {
                         }
                     },
                 },
+                {
+                    "type": "function",
+                    "function": {
+                        "name": "web_search",
+                        "description": "Search the web via SearxNG. Returns a ranked list of {title, url, snippet}. Use for recent events, factual lookups, or to find URLs to fetch in full.",
+                        "parameters": {
+                            "type": "object",
+                            "properties": {
+                                "query": {
+                                    "type": "string",
+                                    "description": "Search query in natural language",
+                                },
+                            },
+                            "required": ["query"]
+                        }
+                    },
+                },
+                {
+                    "type": "function",
+                    "function": {
+                        "name": "web_fetch",
+                        "description": "Fetch a URL and return its main content as markdown. Use this AFTER web_search to read a specific page in detail.",
+                        "parameters": {
+                            "type": "object",
+                            "properties": {
+                                "url": {
+                                    "type": "string",
+                                    "description": "The full URL (including https://) to fetch",
+                                },
+                            },
+                            "required": ["url"]
+                        }
+                    },
+                },
             ],
             "search": [],
             "none": [],
@@ -227,6 +289,40 @@ Singleton {
                                 },
                             },
                             "required": ["command"]
+                        }
+                    },
+                },
+                {
+                    "type": "function",
+                    "function": {
+                        "name": "web_search",
+                        "description": "Search the web via SearxNG. Returns a ranked list of {title, url, snippet}. Use for recent events, factual lookups, or to find URLs to fetch in full.",
+                        "parameters": {
+                            "type": "object",
+                            "properties": {
+                                "query": {
+                                    "type": "string",
+                                    "description": "Search query in natural language",
+                                },
+                            },
+                            "required": ["query"]
+                        }
+                    },
+                },
+                {
+                    "type": "function",
+                    "function": {
+                        "name": "web_fetch",
+                        "description": "Fetch a URL and return its main content as markdown. Use this AFTER web_search to read a specific page in detail.",
+                        "parameters": {
+                            "type": "object",
+                            "properties": {
+                                "url": {
+                                    "type": "string",
+                                    "description": "The full URL (including https://) to fetch",
+                                },
+                            },
+                            "required": ["url"]
                         }
                     },
                 },
@@ -759,6 +855,38 @@ Singleton {
         root.messageByID[id] = aiMessage;
     }
 
+    function formatSearxResults(rawJson) {
+        let data;
+        try {
+            data = JSON.parse(rawJson);
+        } catch (e) {
+            return `Could not parse SearxNG response: ${e}\n\nRaw (first 500 chars):\n${rawJson.slice(0, 500)}`;
+        }
+
+        const MAX_RESULTS = 10;
+        const results = data.results ?? [];
+        const lines = [];
+
+        if (data.answers?.length) {
+            lines.push("## Direct answers");
+            for (const a of data.answers) lines.push(`- ${a}`);
+            lines.push("");
+        }
+
+        lines.push(`## Results (top ${Math.min(MAX_RESULTS, results.length)} of ${results.length})`);
+        for (const r of results.slice(0, MAX_RESULTS)) {
+            lines.push(`- **${r.title}** — ${r.url}`);
+            if (r.content) lines.push(`  ${r.content}`);
+        }
+
+        if (data.suggestions?.length) {
+            lines.push("", "## Related queries");
+            for (const s of data.suggestions) lines.push(`- ${s}`);
+        }
+
+        return lines.join("\n");
+    }
+
     function rejectCommand(message: AiMessageData) {
         if (!message.functionPending) return;
         message.functionPending = false; // User decided, no more "thinking"
@@ -800,6 +928,44 @@ Singleton {
         }
     }
 
+    Process {
+        id: webSearchProc
+        property string query: ""
+        command: ["bash", "-c", `curl -sS --max-time 15 --get --data-urlencode "q=$QUERY" --data-urlencode "format=json" "https://search.uttho.me/search"`]
+        environment: ({ "QUERY": query })
+        stdout: StdioCollector { id: webSearchCollector }
+        onExited: (exitCode, exitStatus) => {
+            const raw = webSearchCollector.text;
+            const output = (exitCode !== 0)
+                ? `web_search failed (exit ${exitCode}). Raw (first 500 chars):\n${raw.slice(0, 500)}`
+                : root.formatSearxResults(raw);
+            root.addFunctionOutputMessage("web_search", output);
+            requester.makeRequest();
+        }
+    }
+
+    Process {
+        id: webFetchProc
+        property string url: ""
+        command: ["bash", "-c", `curl -sS --max-time 30 --get --data-urlencode "url=$TARGET" "https://md.dhr.wtf/"`]
+        environment: ({ "TARGET": url })
+        stdout: StdioCollector { id: webFetchCollector }
+        onExited: (exitCode, exitStatus) => {
+            const MAX = 50000;
+            const raw = webFetchCollector.text;
+            let body;
+            if (exitCode !== 0) {
+                body = `web_fetch failed (exit ${exitCode}). Raw (first 500 chars):\n${raw.slice(0, 500)}`;
+            } else if (raw.length > MAX) {
+                body = raw.slice(0, MAX) + `\n\n[[ truncated ${raw.length - MAX} chars ]]`;
+            } else {
+                body = raw;
+            }
+            root.addFunctionOutputMessage("web_fetch", body);
+            requester.makeRequest();
+        }
+    }
+
     function handleFunctionCall(name, args: var, message: AiMessageData) {
         if (name === "switch_to_search_mode") {
             const modelId = root.currentModelId;
@@ -828,6 +994,20 @@ Singleton {
             message.rawContent += contentToAppend;
             message.content += contentToAppend;
             message.functionPending = true; // Use thinking to indicate the command is waiting for approval
+        } else if (name === "web_search") {
+            if (!args.query || args.query.length === 0) {
+                addFunctionOutputMessage(name, Translation.tr("Invalid arguments. Must provide `query`."));
+                return;
+            }
+            webSearchProc.query = args.query;
+            webSearchProc.running = true;
+        } else if (name === "web_fetch") {
+            if (!args.url || args.url.length === 0) {
+                addFunctionOutputMessage(name, Translation.tr("Invalid arguments. Must provide `url`."));
+                return;
+            }
+            webFetchProc.url = args.url;
+            webFetchProc.running = true;
         }
         else root.addMessage(Translation.tr("Unknown function call: %1").arg(name), "assistant");
     }
