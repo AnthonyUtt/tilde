@@ -1,9 +1,8 @@
 { pkgs, ... }: {
   imports = [
-    ./flameshot.nix
     ./ghostty.nix
-    ./mako.nix
-    ./wofi.nix
+    ./matugen.nix
+    ./quickshell
   ];
 
   home.packages = with pkgs; [

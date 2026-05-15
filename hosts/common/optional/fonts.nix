@@ -7,5 +7,7 @@
     fira-code
     fira-code-symbols
     font-awesome
+    geist-font
+    material-symbols
   ] ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
 }

@@ -1,42 +1,31 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+let
+  identityFile = "/home/anthony/.ssh/id_rsa";
+  homelabHost = hostname: {
+    inherit hostname;
+    user = "anthony";
+    identityFile = identityFile;
+    extraOptions.PreferredAuthentications = "publickey";
+  };
+in {
   programs.ssh = {
     enable = true;
-    extraConfig = ''
-Host gh
-    HostName github.com
-    PreferredAuthentications publickey
-    IdentityFile /home/anthony/.ssh/id_rsa
-    User git
+    enableDefaultConfig = false;
+    matchBlocks = {
+      "*" = { };
 
-Host opnsense
-    Hostname opnsense.utthome.local
-    PreferredAuthentications publickey
-    IdentityFile /home/anthony/.ssh/id_rsa
-    User admin
+      gh = {
+        hostname = "github.com";
+        user = "git";
+        identityFile = identityFile;
+        extraOptions.PreferredAuthentications = "publickey";
+      };
 
-Host hashbrown
-    Hostname hashbrown.utthome.local
-    PreferredAuthentications publickey
-    IdentityFile /home/anthony/.ssh/id_rsa
-    User anthony
-
-Host homefry
-    Hostname homefry.utthome.local
-    PreferredAuthentications publickey
-    IdentityFile /home/anthony/.ssh/id_rsa
-    User anthony
-
-Host spud
-    Hostname spud.utthome.local
-    PreferredAuthentications publickey
-    IdentityFile /home/anthony/.ssh/id_rsa
-    User anthony
-
-Host gaia
-    Hostname gaia.utthome.local
-    PreferredAuthentications publickey
-    IdentityFile /home/anthony/.ssh/id_rsa
-    User anthony
-    '';
+      opnsense = (homelabHost "opnsense.utthome.local") // { user = "admin"; };
+      hashbrown = homelabHost "hashbrown.utthome.local";
+      homefry = homelabHost "homefry.utthome.local";
+      spud = homelabHost "spud.utthome.local";
+      gaia = homelabHost "gaia.utthome.local";
+    };
   };
 }

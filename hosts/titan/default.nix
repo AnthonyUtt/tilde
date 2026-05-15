@@ -31,7 +31,7 @@
 
   programs.hyprland = {
     enable = true;
-    xwayland.enable = false;
+    xwayland.enable = true;
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
   };
@@ -46,7 +46,12 @@
         PermitRootLogin = "no";
       };
     };
+    gnome.gnome-keyring.enable = true;
+    power-profiles-daemon.enable = true;
+    upower.enable = true;
   };
+
+  programs.dconf.enable = true;
 
   security.polkit.enable = true;
 
