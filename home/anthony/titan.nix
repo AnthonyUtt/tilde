@@ -1,4 +1,4 @@
-{
+{ ... }: {
   imports = [
     ./global
 
@@ -11,4 +11,10 @@
     ./features/editors/ai
     ./features/editors/nvim
   ];
+
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+    };
+  };
 }

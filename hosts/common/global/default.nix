@@ -4,6 +4,7 @@
     ./doas.nix
     ./locale.nix
     ./nix.nix
+    ./xdg.nix
     ./zsh.nix
   ];
 

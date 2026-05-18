@@ -9,6 +9,7 @@
   ];
 
   home.packages = with pkgs; [
+    csvtool
     eza
     ripgrep
     fastfetch
