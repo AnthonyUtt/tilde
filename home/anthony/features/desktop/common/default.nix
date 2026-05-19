@@ -3,7 +3,12 @@
     ./discord
   ];
 
-  xdg.mimeApps.enable = true;
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "x-scheme-handler/spotify" = "spotify.desktop";
+    };
+  };
 
   home.packages = with pkgs; [
     feishin
@@ -16,6 +21,7 @@
     pwvucontrol
     remmina
     slack
+    spotify
     steam
     vlc
   ];

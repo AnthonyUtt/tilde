@@ -15,6 +15,7 @@
 
     profiles.default = rec {
       settings = {
+        "clipboard.autocopy" = false;
         "widget.use-xdg-desktop-portal.settings" = true;
         "zen.workspaces.continue-where-left-off" = true;
         "zen.workspaces.natural-scroll" = false;
