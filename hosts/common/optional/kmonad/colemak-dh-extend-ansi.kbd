@@ -1,0 +1,92 @@
+(defsrc
+  esc     f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  grv     1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab     q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps    a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft      z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl    lmet lalt           spc            ralt rmet cmp  rctl
+)
+ 
+(defalias
+  ext  (layer-toggle extend) ;; Bind 'ext' to the Extend Layer
+  qrt  (layer-add qwerty)
+  xrt  (layer-rem qwerty)
+  cmk  (layer-switch colemak-dh)
+  sym  (around-next (layer-toggle symbol))
+  fn   (around-next (layer-toggle functional))
+)
+
+(defalias
+  cpy C-c
+  pst C-v
+  cut C-x
+  udo C-z
+  all C-a
+  fnd C-f
+  bk Back
+  fw Forward
+)
+
+(defalias
+  ;; Home Row Mods
+  r (tap-hold 200 r lalt)
+  s (tap-hold 200 s lsft)
+  t (tap-hold 200 t lctl)
+  n (tap-hold 200 n rctl)
+  e (tap-hold 200 e rsft)
+  i (tap-hold 200 i ralt)
+)
+
+(deflayer colemak-dh
+  esc     f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  grv      1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab      q    w    f    p    b    j    l    u    y    ;    [    ]    \\
+  @sym     a    @r   @s   @t   g    m    @n   @e   @i   o    '    ret
+  z          x    c    d    v    lalt k    h    ,    .    /    rsft
+  lctl     lmet lsft           spc            @qrt  rmet _    _
+)
+
+(deflayer symbol
+  esc      _    _    _    _    _    _    _    _    _    _    _    _    
+  _        _    _    _    _    _    _    _    _    _    _    _    _    bspc
+  tab      !    @    #    $    %    ^    &    *    \\   |   _    _    _
+  _        _    `    -    =    _    _    {    \(   \)   }    '    ret 
+  _          ~    \_   +    _    _    _    _    [    ]    "    _ 
+  lctl     lmet lsft           spc            _    _    _    _
+)
+
+(deflayer functional
+  _        _    _    _    _    _    _    _    _    _    _    _    _    
+  _        _    _    _    _    _    _    _    _    _    _    _    _    _
+  _        _    _    _    _    _    _    _    _    _    _    _    _    _
+  _        _    _    _    _    _    lft  down up   rght _    _    _ 
+  _          _    _    _    _    _    _    _    _    _    _    _ 
+  _        _    _              _              _    _    _    _
+)
+
+(deflayer extend
+  _        play rewind previoussong nextsong ejectcd refresh brdn brup www mail prog1 prog2
+  _        f1   f2   f3   f4   f5   f6   f7   f8   f9  f10   f11  f12  _
+  _        esc  @bk  @fnd @fw  ins  pgup home up   end  menu prnt slck _
+  _        lalt lmet lsft lctl ralt pgdn lft  down rght del  caps _
+  _          @cut @cpy  tab  @pst @udo pgdn bks  lsft lctl comp _
+  _        _    _              ret            _    _    _    _
+)
+
+(deflayer qwerty
+  esc     f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  grv     1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab     q    w    e    r    t    y    u    i    o    p    [    ]    \
+  @cmk    a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft      z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl    lmet lalt           spc            @xrt rmet cmp  rctl
+)
+
+(deflayer empty
+  _        _    _    _    _    _    _    _    _    _    _    _    _    
+  _        _    _    _    _    _    _    _    _    _    _    _    _    _
+  _        _    _    _    _    _    _    _    _    _    _    _    _    _
+  _        _    _    _    _    _    _    _    _    _    _    _    _ 
+  _          _    _    _    _    _    _    _    _    _    _    _ 
+  _        _    _              _              _    _    _    _
+)

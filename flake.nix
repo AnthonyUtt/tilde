@@ -9,6 +9,10 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    kmonad = {
+      url = "github:kmonad/kmonad?dir=nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     hyprland = {
       type = "git";
       url = "https://github.com/hyprwm/Hyprland";
@@ -74,6 +78,7 @@
 
     nixosConfigurations = {
       titan = mkNixos [ ./hosts/titan ];
+      tethys = mkNixos [ ./hosts/tethys ];
     };
   };
 }
