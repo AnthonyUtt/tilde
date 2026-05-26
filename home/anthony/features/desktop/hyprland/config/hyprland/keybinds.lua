@@ -38,7 +38,7 @@ hl.bind(modShift.."Space", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mod.."Space",          hl.dsp.global("quickshell:overviewWorkspacesToggle"), { description = "Overview / launcher" })
 hl.bind(mod.."A",              hl.dsp.global("quickshell:sidebarLeftToggle"),         { description = "AI sidebar" })
 hl.bind(mod.."ALT + A",        hl.dsp.global("quickshell:sidebarLeftToggleDetach"),   { description = "Detach AI sidebar" })
-hl.bind(mod.."N",              hl.dsp.global("quickshell:sidebarRightToggle"),        { description = "Control center" })
+hl.bind(mod.."I",              hl.dsp.global("quickshell:sidebarRightToggle"),        { description = "Control center" })
 hl.bind(mod.."Tab",            hl.dsp.global("quickshell:overviewWorkspacesToggle"),  { description = "Overview" })
 hl.bind(mod.."V",              hl.dsp.global("quickshell:overviewClipboardToggle"),   { description = "Clipboard history" })
 hl.bind(mod.."Period",         hl.dsp.global("quickshell:overviewEmojiToggle"),       { description = "Emoji picker" })
@@ -46,6 +46,12 @@ hl.bind(mod.."Slash",          hl.dsp.global("quickshell:cheatsheetToggle"),    
 hl.bind(mod.."M",              hl.dsp.global("quickshell:mediaControlsToggle"),       { description = "Media controls" })
 hl.bind(mod.."G",              hl.dsp.global("quickshell:overlayToggle"),             { description = "Widget overlay" })
 hl.bind("CTRL + ALT + Delete", hl.dsp.global("quickshell:sessionToggle"),             { description = "Session menu" })
+
+-- Workspace picker (Quickshell port of old fzfify scripts)
+hl.bind(mod.."W",      hl.dsp.global("quickshell:workspaceSwitcherSwitch"), { description = "Switch workspace (picker)" })
+hl.bind(modShift.."W", hl.dsp.global("quickshell:workspaceSwitcherMove"),   { description = "Move window to workspace (picker)" })
+hl.bind(mod.."N",      hl.dsp.global("quickshell:workspaceSwitcherNew"),    { description = "New named workspace" })
+hl.bind(modShift.."N", hl.dsp.global("quickshell:workspaceSwitcherRename"), { description = "Rename current workspace" })
 
 -- Wallpaper
 hl.bind("CTRL + SUPER + T",       hl.dsp.global("quickshell:wallpaperSelectorToggle"), { description = "Wallpaper picker" })

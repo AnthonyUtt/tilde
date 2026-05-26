@@ -27,6 +27,7 @@ import qs.modules.sidebarLeft
 import qs.modules.sidebarRight
 import qs.modules.verticalBar
 import qs.modules.wallpaperSelector
+import qs.modules.workspaceSwitcher
 
 import QtQuick
 import QtQuick.Window
@@ -72,4 +73,5 @@ ShellRoot {
     PanelLoader { component: SidebarLeft {} }
     PanelLoader { component: SidebarRight {} }
     PanelLoader { component: WallpaperSelector {} }
+    PanelLoader { component: WorkspaceSwitcher {} }
 }

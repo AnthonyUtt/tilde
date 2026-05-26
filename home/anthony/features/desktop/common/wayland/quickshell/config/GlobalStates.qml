@@ -30,6 +30,8 @@ Singleton {
     property bool superReleaseMightTrigger: true
     property bool wallpaperSelectorOpen: false
     property bool workspaceShowNumbers: false
+    property bool workspaceSwitcherOpen: false
+    property string workspaceSwitcherMode: "switch"
 
     onSidebarRightOpenChanged: {
         if (GlobalStates.sidebarRightOpen) {
