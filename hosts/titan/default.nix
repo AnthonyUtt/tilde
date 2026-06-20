@@ -15,6 +15,7 @@
     ../common/optional/greetd.nix
     ../common/optional/logitech.nix
     ../common/optional/pipewire.nix
+    ../common/optional/steam.nix
     ../common/optional/wine.nix
   ];
 

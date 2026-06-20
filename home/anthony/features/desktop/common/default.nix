@@ -31,7 +31,6 @@
     remmina
     slack
     spotify
-    steam
     vlc
   ];
 
