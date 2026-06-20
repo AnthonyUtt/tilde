@@ -51,11 +51,6 @@
           icon = "fingerprint";
           id = 1;
         };
-        Work = {
-          color = "orange";
-          icon = "briefcase";
-          id = 2;
-        };
         AntDev = {
           color = "purple";
           icon = "dollar";
@@ -69,35 +64,27 @@
       pins = {
         "Email" = {
           id = "7b92de26-cca5-45a8-ada9-51eb1976686d";
-          url = "https://mail.google.com";
+          url = "https://mail.proton.me/u/1/inbox";
           position = 101;
           isEssential = true;
-          workspace = spaces."Work".id;
-          container = containers.Work.id;
+          workspace = spaces."AntDev".id;
+          container = containers.AntDev.id;
         };
         "Calendar" = {
           id = "cba528eb-d95d-49f7-bff8-a6bb721e2ffd";
-          url = "https://calendar.google.com";
+          url = "https://calendar.google.com/calendar/u/0/r";
           position = 102;
           isEssential = true;
-          workspace = spaces."Work".id;
-          container = containers.Work.id;
-        };
-        "Linear" = {
-          id = "5ae6cfdd-fba9-44eb-9c01-e3e4e52d43c3";
-          url = "https://linear.app";
-          position = 103;
-          isEssential = true;
-          workspace = spaces."Work".id;
-          container = containers.Work.id;
+          workspace = spaces."AntDev".id;
+          container = containers.AntDev.id;
         };
         "Github" = {
           id = "9049d73b-22a2-4e3e-bff4-8d78de8a77bc";
-          url = "https://github.com/getrembrand/amplify";
+          url = "https://github.com";
           position = 104;
           isEssential = true;
-          workspace = spaces."Work".id;
-          container = containers.Work.id;
+          workspace = spaces."AntDev".id;
+          container = containers.AntDev.id;
         };
       };
 
@@ -114,11 +101,11 @@
 
       spacesForce = true;
       spaces = {
-        "Work" = {
-          id = "04a4312a-1ce2-4ed4-8d7a-863ecfb00a87";
+        "AntDev" = {
+          id = "da9e01bd-cba1-472b-b863-7c1c81a00e15";
           position = 1002;
-          container = containers.Work.id;
-          icon = "🚀";
+          container = containers.AntDev.id;
+          icon = "👾";
           theme = {
             type = "gradient";
             colors = [
@@ -203,41 +190,6 @@
               }
             ];
             opacity = 0.5;
-            texture = 0.6875;
-          };
-        };
-        "AntDev" = {
-          id = "da9e01bd-cba1-472b-b863-7c1c81a00e15";
-          position = 1000;
-          container = containers.AntDev.id;
-          icon = "👾";
-          theme = {
-            type = "gradient";
-            colors = [
-              {
-                red = 250;
-                green = 26;
-                blue = 70;
-                algorithm = "analogous";
-                lightness = 54;
-                primary = true;
-                custom = false;
-                position.x = 282;
-                position.y = 159;
-              }
-              {
-                red = 243;
-                green = 26;
-                blue = 250;
-                algorithm = "analogous";
-                lightness = 54;
-                primary = false;
-                custom = false;
-                position.x = 230;
-                position.y = 87;
-              }
-            ];
-            opacity = 0.6;
             texture = 0.6875;
           };
         };

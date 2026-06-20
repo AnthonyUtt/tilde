@@ -9,6 +9,7 @@
 
     ../common/optional/1password.nix
     ../common/optional/docker.nix
+    ../common/optional/flatpak.nix
     ../common/optional/fonts.nix
     ../common/optional/gamemode.nix
     ../common/optional/greetd.nix
@@ -23,9 +24,13 @@
     interfaces.enp7s0 = {
       useDHCP = true;
     };
-    firewall = {
+    firewall = rec {
       enable = true;
       allowedTCPPorts = [ 22 ];
+      allowedTCPPortRanges = [
+        { from = 1714; to = 1764; } # kde-connect
+      ];
+      allowedUDPPortRanges = allowedTCPPortRanges;
     };
   };
 

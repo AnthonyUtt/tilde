@@ -1,5 +1,8 @@
 { pkgs, ... }: {
   imports = [
+    ../browser/chromium.nix
+    ../browser/zen
+
     ./discord
   ];
 
@@ -12,11 +15,15 @@
   };
 
   home.packages = with pkgs; [
+    anytype
+    claude-desktop-fhs
     feishin
     figma-linux
     gimp
     gnome-keyring
     inkscape
+    jan-custom
+    kdePackages.dolphin
     obsidian
     playerctl
     pulseaudio
@@ -27,4 +34,6 @@
     steam
     vlc
   ];
+
+  services.kdeconnect.enable = true;
 }

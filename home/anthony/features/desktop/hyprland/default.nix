@@ -10,7 +10,9 @@ in
   ];
 
   home = {
-    sessionVariables = { XDG_CURRENT_DESKTOP = "Hyprland"; };
+    sessionVariables = {
+      XDG_CURRENT_DESKTOP = "Hyprland";
+    };
     packages = with pkgs; [
       inputs.hyprwm-contrib.packages.${system}.grimblast
       inputs.rose-pine-hyprcursor.packages.${system}.default

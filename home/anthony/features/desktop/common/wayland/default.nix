@@ -16,8 +16,7 @@
     pipewire
     wireplumber
     qt6.qtwayland
-    libsForQt5.qt5.qtwayland
-    # libsForQt5.polkit-kde-agent
+    qt5.qtwayland
   ];
 
   home.sessionVariables = {

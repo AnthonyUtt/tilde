@@ -3,6 +3,7 @@ local M = {}
 M.opts = {
   filters = {
     dotfiles = false,
+    git_ignored = false,
     exclude = { vim.fn.stdpath "config" .. "/lua/custom" },
     custom = {
       "^.git$",

@@ -46,15 +46,18 @@
       };
     };
     claude-code.url = "github:sadjow/claude-code-nix";
+    claude-desktop.url = "github:aaddrick/claude-desktop-debian";
+    opencode.url = "github:anomalyco/opencode";
   };
 
-  outputs = { self, nixpkgs, rust-overlay, ... }@inputs:
+  outputs = { self, nixpkgs, rust-overlay, opencode, ... }@inputs:
   let
     inherit (self) outputs;
 
     system = "x86_64-linux";
 
     overlays = {
+      opencode = opencode.overlays.default;
       rust-overlay = rust-overlay.overlays.default;
       personal = import pkgs/overlay.nix;
     };
