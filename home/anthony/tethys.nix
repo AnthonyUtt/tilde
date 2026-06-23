@@ -17,4 +17,13 @@
       color-scheme = "prefer-dark";
     };
   };
+
+  # Override Hyprland configs
+  xdg.configFile."hypr/custom/overrides.lua".text = ''
+    hl.config({
+      general = {
+        layout = "scrolling",
+      },
+    })
+  '';
 }

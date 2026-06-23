@@ -1,4 +1,4 @@
-{ ... }: {
+{ pkgs, ... }: {
   imports = [
     ./global
 
@@ -16,4 +16,6 @@
       color-scheme = "prefer-dark";
     };
   };
+
+  home.packages = [ pkgs.anytype ];
 }

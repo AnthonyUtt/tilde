@@ -12,10 +12,10 @@
     kernelModules = [ "kvm-intel" ];
     extraModulePackages = [ ];
     loader = {
-      systemd-boot = {
+      grub = {
         enable = true;
+        device = "/dev/sda";
       };
-      efi.canTouchEfiVariables = true;
     };
   };
 
@@ -27,10 +27,15 @@
   fileSystems."/boot" =
     { device = "/dev/disk/by-label/NIXBOOT";
       fsType = "vfat";
+      options = [ "fmask=0022" "dmask=0022" ];
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-label/NIXSWAP"; }
+    [
+      {
+        device = "/.swapfile";
+        size = 2 * 1024;
+      }
     ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

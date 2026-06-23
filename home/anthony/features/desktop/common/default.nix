@@ -15,7 +15,6 @@
   };
 
   home.packages = with pkgs; [
-    anytype
     claude-desktop-fhs
     feishin
     figma-linux

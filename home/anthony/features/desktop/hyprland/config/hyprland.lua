@@ -10,3 +10,4 @@ require("hyprland/keybinds")
 
 -- Custom setups
 require("custom/obsidian")
+require("custom/overrides")

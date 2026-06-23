@@ -1,6 +1,6 @@
 { pkgs, inputs, ... }: {
   imports = [
-    inputs.hardware.nixosModules.lenovo-thinkpad-x1-9th-gen
+    # inputs.hardware.nixosModules.lenovo-thinkpad-x1-9th-gen
     inputs.home-manager.nixosModules.home-manager
 
     ./hardware-configuration.nix
@@ -56,6 +56,7 @@
       windowManager.i3.enable = true;
       displayManager.startx.enable = true;
     };
+    upower.enable = true;
   };
 
   # Enable polkit for Sway/Wayland

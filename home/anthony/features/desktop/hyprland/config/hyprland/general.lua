@@ -57,6 +57,10 @@ hl.config({
     slave_count_for_center_master = 0,
     always_keep_position = true,
   },
+  scrolling = {
+    column_width = 0.85,
+    focus_fit_method = 0,
+  },
 })
 
 -- Curves
