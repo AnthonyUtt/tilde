@@ -54,6 +54,10 @@ in
       id = "linkwarden";
       pinned = true;
     };
+    "addon@darkreader.org" = mkExtensionEntry {
+      id = "darkreader";
+      pinned = true;
+    };
   };
   Preferences = mkLockedAttrs {
     "browser.aboutConfig.showWarning" = false;

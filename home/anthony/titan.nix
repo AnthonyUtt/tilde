@@ -18,4 +18,13 @@
   };
 
   home.packages = [ pkgs.anytype ];
+
+  # Override Hyprland configs
+  xdg.configFile."hypr/custom/overrides.lua".text = ''
+    hl.config({
+      general = {
+        layout = "master",
+      },
+    })
+  '';
 }

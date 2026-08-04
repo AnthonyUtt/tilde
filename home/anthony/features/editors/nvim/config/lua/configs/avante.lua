@@ -1,7 +1,7 @@
 return {
   -- debug = true;
-  mode = "legacy", -- agentic | legacy
-  provider = "openai",
+  mode = "agentic", -- agentic | legacy
+  provider = "claude",
   -- WARNING: Since auto-suggestions are a high-frequency operation and therefore expensive,
   -- currently designating it as `copilot` provider is dangerous because: https://github.com/yetone/avante.nvim/issues/1048
   -- Of course, you can reduce the request frequency by increasing `suggestion.debounce`.

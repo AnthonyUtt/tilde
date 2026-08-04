@@ -23,7 +23,9 @@
     inkscape
     jan-custom
     kdePackages.dolphin
+    moonlight-qt
     obsidian
+    orca-slicer
     playerctl
     pulseaudio
     pwvucontrol

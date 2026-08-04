@@ -51,6 +51,11 @@
           icon = "fingerprint";
           id = 1;
         };
+        Work = {
+          color = "orange";
+          icon = "briefcase";
+          id = 2;
+        };
         AntDev = {
           color = "purple";
           icon = "dollar";
@@ -62,10 +67,34 @@
       pinsForceAction = "demote";
       # isEssential = false for standard pinned tabs
       pins = {
+        "WorkEmail" = {
+          id = "25692f60-06a8-4a5d-99d6-cdd36f07d7fb";
+          url = "https://mail.google.com/mail/u/0/#inbox";
+          position = 101;
+          isEssential = true;
+          workspace = spaces."Work".id;
+          container = containers.Work.id;
+        };
+        "WorkCalendar" = {
+          id = "152d18cf-6fe0-43cd-895b-a08d37afda18";
+          url = "https://calendar.google.com/calendar/u/0/r";
+          position = 102;
+          isEssential = true;
+          workspace = spaces."Work".id;
+          container = containers.Work.id;
+        };
+        "WorkGithub" = {
+          id = "cb0d75a3-cb86-43f6-acab-56988054f91f";
+          url = "https://github.com";
+          position = 103;
+          isEssential = true;
+          workspace = spaces."Work".id;
+          container = containers.Work.id;
+        };
         "Email" = {
           id = "7b92de26-cca5-45a8-ada9-51eb1976686d";
           url = "https://mail.proton.me/u/1/inbox";
-          position = 101;
+          position = 104;
           isEssential = true;
           workspace = spaces."AntDev".id;
           container = containers.AntDev.id;
@@ -73,7 +102,7 @@
         "Calendar" = {
           id = "cba528eb-d95d-49f7-bff8-a6bb721e2ffd";
           url = "https://calendar.google.com/calendar/u/0/r";
-          position = 102;
+          position = 105;
           isEssential = true;
           workspace = spaces."AntDev".id;
           container = containers.AntDev.id;
@@ -81,7 +110,7 @@
         "Github" = {
           id = "9049d73b-22a2-4e3e-bff4-8d78de8a77bc";
           url = "https://github.com";
-          position = 104;
+          position = 106;
           isEssential = true;
           workspace = spaces."AntDev".id;
           container = containers.AntDev.id;
@@ -101,9 +130,44 @@
 
       spacesForce = true;
       spaces = {
+        "Work" = {
+          id = "52cb58d5-aa51-46df-9378-24ac9a5bb76b";
+          position = 1001;
+          container = containers.Work.id;
+          icon = "🏥";
+          theme = {
+            type = "gradient";
+            colors = [
+              {
+                red = 250;
+                green = 26;
+                blue = 70;
+                algorithm = "analogous";
+                lightness = 54;
+                primary = true;
+                custom = false;
+                position.x = 282;
+                position.y = 159;
+              }
+              {
+                red = 243;
+                green = 26;
+                blue = 250;
+                algorithm = "analogous";
+                lightness = 54;
+                primary = false;
+                custom = false;
+                position.x = 230;
+                position.y = 87;
+              }
+            ];
+            opacity = 0.6;
+            texture = 0.6875;
+          };
+        };
         "AntDev" = {
           id = "da9e01bd-cba1-472b-b863-7c1c81a00e15";
-          position = 1002;
+          position = 1003;
           container = containers.AntDev.id;
           icon = "👾";
           theme = {
@@ -149,7 +213,7 @@
         };
         "Personal" = {
           id = "7c63557e-0149-4b75-9027-776b45c6b5de";
-          position = 1001;
+          position = 1002;
           container = containers.Personal.id;
           icon = "🏠";
           theme = {
