@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, inputs, lib, ... }: {
   imports = [
     inputs.home-manager.nixosModules.home-manager
 
@@ -40,10 +40,13 @@
     xwayland.enable = true;
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    withUWSM = true;
   };
 
   services = {
-    dbus.implementation = "dbus";
+    # UWSM (../common/optional/uwsm.nix) defaults dbus to "broker"; force the
+    # classic "dbus" implementation this host relies on to override it.
+    dbus.implementation = lib.mkForce "dbus";
     openssh = {
       enable = true;
       ports = [ 22 ];

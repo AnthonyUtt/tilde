@@ -16,6 +16,7 @@
     ../common/optional/kmonad
     ../common/optional/logitech.nix
     ../common/optional/pipewire.nix
+    ../common/optional/uwsm.nix
     ../common/optional/wine.nix
     ../common/optional/wireless.nix
   ];

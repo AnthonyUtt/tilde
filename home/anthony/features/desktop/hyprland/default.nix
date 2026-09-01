@@ -41,4 +41,6 @@ in
     source = config.lib.file.mkOutOfStoreSymlink
       "${config.xdg.stateHome}/quickshell/user/generated/hypr-colors.lua";
   };
+
+  xdg.configFile."uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
 }

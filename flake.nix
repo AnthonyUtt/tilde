@@ -48,6 +48,10 @@
     claude-code.url = "github:sadjow/claude-code-nix";
     claude-desktop.url = "github:aaddrick/claude-desktop-debian";
     opencode.url = "github:anomalyco/opencode";
+    qmd = {
+      url = "github:tobi/qmd";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, rust-overlay, opencode, ... }@inputs:
