@@ -35,6 +35,21 @@ return {
     end,
   },
   {
+    "Civitasv/cmake-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    ft = { "c", "cpp", "cmake" },
+    cmd = {
+      "CMakeGenerate",
+      "CMakeBuild",
+      "CMakeRun",
+      "CMakeClean",
+      "CMakeSelectBuildType",
+      "CMakeSelectLaunchTarget",
+      "CMakeStopExecutor",
+    },
+    opts = require("configs.cmake").opts,
+  },
+  {
     "neovim/nvim-lspconfig",
     config = function()
       require("configs.lspconfig").config()

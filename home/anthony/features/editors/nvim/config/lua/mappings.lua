@@ -37,3 +37,6 @@ load_mappings(gitsigns)
 
 local flash = require("configs.flash").mappings
 load_mappings(flash)
+
+local cmake = require("configs.cmake").mappings
+load_mappings(cmake)

@@ -15,6 +15,7 @@
   };
 
   home.packages = with pkgs; [
+    bottles
     claude-desktop-fhs
     feishin
     figma-linux

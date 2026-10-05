@@ -19,6 +19,9 @@ in
 
       nodejs_24
       bash-language-server
+      clang-tools # clangd, clang-format, clang-tidy
+      cmake
+      neocmakelsp
       vscode-langservers-extracted
       docker-compose-language-service
       dot-language-server

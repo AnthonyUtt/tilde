@@ -18,6 +18,16 @@ o.smartindent = true
 o.tabstop = 2
 o.softtabstop = 2
 
+-- 4-space indents for C/C++/CMake
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "c", "cpp", "cmake" },
+  callback = function()
+    vim.opt_local.shiftwidth = 4
+    vim.opt_local.tabstop = 4
+    vim.opt_local.softtabstop = 4
+  end,
+})
+
 o.fillchars = { eob = " " }
 o.ignorecase = true
 o.smartcase = true

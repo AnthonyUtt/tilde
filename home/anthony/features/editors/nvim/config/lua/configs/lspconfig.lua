@@ -16,6 +16,7 @@ M.config = function()
     "glsl_analyzer",
     "html",
     "jsonls",
+    "neocmake",
     "nil_ls",
     "qmlls",
     "solargraph",
@@ -41,6 +42,27 @@ M.config = function()
     })
     vim.lsp.enable(lsp)
   end
+
+  vim.lsp.config('clangd', {
+    -- Copilot only speaks utf-16; pin clangd to it too so mixed-encoding
+    -- warnings don't fire when both are attached to a buffer
+    capabilities = vim.tbl_deep_extend("force", capabilities, {
+      general = { positionEncodings = { "utf-16" } },
+    }),
+    on_attach = on_attach,
+    on_init = on_init,
+    cmd = {
+      "clangd",
+      "--background-index",
+      "--clang-tidy",
+      "--completion-style=detailed",
+      "--header-insertion=iwyu",
+      -- Let clangd ask the nix compiler wrappers for their system include
+      -- paths (libstdc++, glibc), which clang can't find on its own on NixOS
+      "--query-driver=/nix/store/*-gcc-wrapper-*/bin/*,/nix/store/*-clang-wrapper-*/bin/*",
+    },
+  })
+  vim.lsp.enable('clangd')
 
   vim.lsp.config('cssls', {
     capabilities = capabilities,
